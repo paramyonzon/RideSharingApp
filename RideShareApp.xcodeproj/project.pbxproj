@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		96C9870FC26DD8582F3567AE /* Pods_RideShareApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C124F6B9BD9856BD805323A /* Pods_RideShareApp.framework */; };
+		BC14AD8B1F4A95E4002005C1 /* RoundedShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC14AD8A1F4A95E4002005C1 /* RoundedShadowView.swift */; };
+		BC14AD8D1F4A9763002005C1 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC14AD8C1F4A9763002005C1 /* RoundedImageView.swift */; };
+		BC2FD47D1F49B0C6002CB210 /* Gradiant View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2FD47C1F49B0C6002CB210 /* Gradiant View.swift */; };
 		BC59A2F61F48F2480081DA17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC59A2F51F48F2480081DA17 /* AppDelegate.swift */; };
 		BC59A2F81F48F2480081DA17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC59A2F71F48F2480081DA17 /* ViewController.swift */; };
 		BC59A2FB1F48F2480081DA17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC59A2F91F48F2480081DA17 /* Main.storyboard */; };
@@ -18,6 +21,9 @@
 /* Begin PBXFileReference section */
 		1FE3C927836EC63BB0DC7F3B /* Pods-RideShareApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RideShareApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RideShareApp/Pods-RideShareApp.release.xcconfig"; sourceTree = "<group>"; };
 		7C124F6B9BD9856BD805323A /* Pods_RideShareApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RideShareApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC14AD8A1F4A95E4002005C1 /* RoundedShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedShadowView.swift; sourceTree = "<group>"; };
+		BC14AD8C1F4A9763002005C1 /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
+		BC2FD47C1F49B0C6002CB210 /* Gradiant View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Gradiant View.swift"; sourceTree = "<group>"; };
 		BC59A2F21F48F2480081DA17 /* RideShareApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RideShareApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC59A2F51F48F2480081DA17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC59A2F71F48F2480081DA17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +63,30 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BC2FD4791F49B05E002CB210 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		BC2FD47A1F49B069002CB210 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BC2FD47C1F49B0C6002CB210 /* Gradiant View.swift */,
+				BC14AD8A1F4A95E4002005C1 /* RoundedShadowView.swift */,
+				BC14AD8C1F4A9763002005C1 /* RoundedImageView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		BC2FD47B1F49B06B002CB210 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		BC59A2E91F48F2470081DA17 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +108,9 @@
 		BC59A2F41F48F2480081DA17 /* RideShareApp */ = {
 			isa = PBXGroup;
 			children = (
+				BC2FD47B1F49B06B002CB210 /* Model */,
+				BC2FD47A1F49B069002CB210 /* View */,
+				BC2FD4791F49B05E002CB210 /* Controller */,
 				BC59A2F51F48F2480081DA17 /* AppDelegate.swift */,
 				BC59A2F71F48F2480081DA17 /* ViewController.swift */,
 				BC59A2F91F48F2480081DA17 /* Main.storyboard */,
@@ -212,6 +245,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC2FD47D1F49B0C6002CB210 /* Gradiant View.swift in Sources */,
+				BC14AD8D1F4A9763002005C1 /* RoundedImageView.swift in Sources */,
+				BC14AD8B1F4A95E4002005C1 /* RoundedShadowView.swift in Sources */,
 				BC59A2F81F48F2480081DA17 /* ViewController.swift in Sources */,
 				BC59A2F61F48F2480081DA17 /* AppDelegate.swift in Sources */,
 			);
@@ -381,6 +417,7 @@
 				BC59A3061F48F2480081DA17 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
