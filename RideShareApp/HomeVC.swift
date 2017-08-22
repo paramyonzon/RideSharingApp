@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeVC.swift
 //  RideShareApp
 //
 //  Created by Param Yonzon on 8/19/17.
@@ -9,15 +9,19 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class HomeVC: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    
+    @IBOutlet weak var actionBtn: RoundedShadowButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
-
+    @IBAction func actionBtnWasPressed(_ sender: Any) {
+        actionBtn.animateButton(shouldload: true, withMessage: nil)
+    }
 }
 
