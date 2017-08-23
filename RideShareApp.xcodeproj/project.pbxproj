@@ -14,6 +14,7 @@
 		BC14AD911F4BA1C5002005C1 /* RoundedShadowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC14AD901F4BA1C5002005C1 /* RoundedShadowButton.swift */; };
 		BC14AD931F4BEE5C002005C1 /* LeftSidePanelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC14AD921F4BEE5C002005C1 /* LeftSidePanelVC.swift */; };
 		BC14AD951F4BEFA1002005C1 /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC14AD941F4BEFA1002005C1 /* ContainerVC.swift */; };
+		BC14AD981F4D3D9F002005C1 /* CenterVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC14AD971F4D3D9F002005C1 /* CenterVCDelegate.swift */; };
 		BC2FD47D1F49B0C6002CB210 /* Gradiant View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2FD47C1F49B0C6002CB210 /* Gradiant View.swift */; };
 		BC59A2F61F48F2480081DA17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC59A2F51F48F2480081DA17 /* AppDelegate.swift */; };
 		BC59A2F81F48F2480081DA17 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC59A2F71F48F2480081DA17 /* HomeVC.swift */; };
@@ -31,6 +32,7 @@
 		BC14AD901F4BA1C5002005C1 /* RoundedShadowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedShadowButton.swift; sourceTree = "<group>"; };
 		BC14AD921F4BEE5C002005C1 /* LeftSidePanelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSidePanelVC.swift; sourceTree = "<group>"; };
 		BC14AD941F4BEFA1002005C1 /* ContainerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
+		BC14AD971F4D3D9F002005C1 /* CenterVCDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterVCDelegate.swift; sourceTree = "<group>"; };
 		BC2FD47C1F49B0C6002CB210 /* Gradiant View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Gradiant View.swift"; sourceTree = "<group>"; };
 		BC59A2F21F48F2480081DA17 /* RideShareApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RideShareApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC59A2F51F48F2480081DA17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,9 +73,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BC14AD961F4D3D5F002005C1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BC14AD971F4D3D9F002005C1 /* CenterVCDelegate.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		BC2FD4791F49B05E002CB210 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BC59A2F71F48F2480081DA17 /* HomeVC.swift */,
 				BC14AD921F4BEE5C002005C1 /* LeftSidePanelVC.swift */,
 				BC14AD941F4BEFA1002005C1 /* ContainerVC.swift */,
 			);
@@ -120,11 +131,11 @@
 		BC59A2F41F48F2480081DA17 /* RideShareApp */ = {
 			isa = PBXGroup;
 			children = (
+				BC14AD961F4D3D5F002005C1 /* Protocols */,
 				BC2FD47B1F49B06B002CB210 /* Model */,
 				BC2FD47A1F49B069002CB210 /* View */,
 				BC2FD4791F49B05E002CB210 /* Controller */,
 				BC59A2F51F48F2480081DA17 /* AppDelegate.swift */,
-				BC59A2F71F48F2480081DA17 /* HomeVC.swift */,
 				BC59A2F91F48F2480081DA17 /* Main.storyboard */,
 				BC59A3071F48F2DB0081DA17 /* Assets.xcassets */,
 				BC59A2FE1F48F2480081DA17 /* LaunchScreen.storyboard */,
@@ -257,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC14AD981F4D3D9F002005C1 /* CenterVCDelegate.swift in Sources */,
 				BC14AD911F4BA1C5002005C1 /* RoundedShadowButton.swift in Sources */,
 				BC14AD931F4BEE5C002005C1 /* LeftSidePanelVC.swift in Sources */,
 				BC14AD8F1F4B98DE002005C1 /* CircleView.swift in Sources */,
