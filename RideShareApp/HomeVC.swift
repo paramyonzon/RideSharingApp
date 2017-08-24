@@ -25,5 +25,6 @@ class HomeVC: UIViewController, MKMapViewDelegate {
     @IBAction func actionBtnWasPressed(_ sender: Any) {
         actionBtn.animateButton(shouldload: true, withMessage: nil)
     }
+    
 }
 

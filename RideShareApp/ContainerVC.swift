@@ -9,6 +9,7 @@
 import UIKit
 import QuartzCore
 
+
 enum SlideOutState {
     case collapsed
     case leftPanelExpanded
@@ -20,6 +21,22 @@ enum ShowWhichVC {
     
 var showVC: ShowWhichVC = .homeVC
 
+private extension UIStoryboard {
+    class func mainStoryBoard() -> UIStoryboard {
+        return UIStoryboard(name: "Main", bundle: Bundle.main)
+    }
+    
+    class func leftviewController() -> LeftSidePanelVC? {
+        return mainStoryBoard().instantiateViewController(withIdentifier: "LeftSidePanelVC") as? LeftSidePanelVC
+    }
+    
+    class func homeVC() -> HomeVC? {
+        return mainStoryBoard().instantiateViewController(withIdentifier: "HomeVC") as? HomeVC
+    }
+    
+}
+
+
 class ContainerVC: UIViewController {
     
     var homeVC: HomeVC!
@@ -28,7 +45,9 @@ class ContainerVC: UIViewController {
     var currentState: SlideOutState = .collapsed
     
     var isHidden = false
-    let centerPanelOffset: CGFloat = 160
+    let centerPanelExpandedOffset: CGFloat = 160
+    var tap: UITapGestureRecognizer!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,18 +67,14 @@ class ContainerVC: UIViewController {
         presentingController = homeVC
         
         if let con = centerController {
-            
             con.view.removeFromSuperview()
             con.removeFromParentViewController()
-            
         }
         
-        centerController = homeVC
+        centerController = presentingController
         
-        if let con = presentingController
-        
-        view.addSubView(centerController.view)
-        addChildSideViewController(centerController)
+        view.addSubview(centerController.view)
+        addChildViewController(centerController)
         centerController.didMove(toParentViewController: self)
     }
     
@@ -67,7 +82,7 @@ class ContainerVC: UIViewController {
         return UIStatusBarAnimation.slide
     }
     
-    override var preferredStatusBarHidden: Bool {
+    override var prefersStatusBarHidden: Bool {
         return isHidden
     }
 }
@@ -82,16 +97,17 @@ extension ContainerVC: CenterVCDelegte {
         animateLeftPanel(shouldExpand: notAlreadyExpanded)
     }
     
+    
     func addLeftPanelViewController() {
         if leftVC == nil {
             leftVC = UIStoryboard.leftviewController()
-            addChildSideViewController(leftVC!)
+            addChildSidePanelViewController(sidePanelController: leftVC!)
         }
     }
     
-    func addChildSideViewController( sidePanelController: LeftSidePanelVC) {
+    func addChildSidePanelViewController( sidePanelController: LeftSidePanelVC) {
         view.insertSubview(sidePanelController.view, at: 0)
-        addChildSideViewController(sidePanelController)
+        addChildViewController(sidePanelController)
         sidePanelController.didMove(toParentViewController: self)
     }
     
@@ -99,19 +115,18 @@ extension ContainerVC: CenterVCDelegte {
         if shouldExpand {
             isHidden = !isHidden
             animateStatusBar()
-            
-            hideWhiteCoverView()
+        
             setupWhiteCoverView()
             
             currentState = .leftPanelExpanded
-            animateCenterPanelXPosition(targePosition: centerController.view.width - centerPanelOffset)
+            animateCenterPanelXPosition(targePosition: centerController.view.frame.width - centerPanelExpandedOffset)
         } else {
             isHidden = !isHidden
             animateStatusBar()
             
             hideWhiteCoverView()
             animateCenterPanelXPosition(targePosition: 0, completion: { (finished) in
-                if finished = true
+                if finished == true {
                     self.currentState = .collapsed
                     self.leftVC = nil
                 }
@@ -121,9 +136,45 @@ extension ContainerVC: CenterVCDelegte {
     
     func animateCenterPanelXPosition(targePosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-            self.centerController.view.frame.origin.x = targetPosition
+            self.centerController.view.frame.origin.x = targePosition
         }, completion: completion)
     }
+    
+    func setupWhiteCoverView() {
+        let whiteCoverView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        whiteCoverView.alpha = 0.0
+        whiteCoverView.backgroundColor = UIColor.white
+        whiteCoverView.tag = 25
+        
+        self.centerController.view.addSubview(whiteCoverView)
+        UIView.animate(withDuration: 0.2) {
+            whiteCoverView.alpha = 0.75
+        }
+        
+        tap = UITapGestureRecognizer(target: self, action: #selector(animateLeftPanel(shouldExpand:)))
+        tap.numberOfTapsRequired = 1
+        
+        self.centerController.view.addGestureRecognizer(tap)
+    }
+    
+    func hideWhiteCoverView() {
+        centerController.view.removeGestureRecognizer(tap)
+        for subview in self.centerController.view.subviews {
+            if subview.tag == 25 {
+                UIView.animate(withDuration: 0.2, animations: {
+                    subview.alpha = 0.0
+                }, completion: { (finished) in
+                    subview.removeFromSuperview()
+                })
+            }
+        }
+    }
+    
+    
+    func animateStatusBar() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { 
+            self.setNeedsStatusBarAppearanceUpdate()
+        })
 
     func setupWhiteCoverView() {
         let whiteCoverView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
@@ -131,31 +182,7 @@ extension ContainerVC: CenterVCDelegte {
         whiteCoverView.backgroundColor = UIColor.white
         whiteCoverView.tag = 25
         
+       
 }
-
-        
-        
-        
-    }
-
-    func animateStatusBar() {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-            self.setNeedsStatusBarApperanceUpdate()
-        })
 }
-
-private extension UIStoryboard {
-    class func mainStoryBoard() -> UIStoryboard {
-        return UIStoryboard(name: "Main", bundle: Bundle.main)
-    }
-
-    class func leftviewController() -> LeftSidePanelVC? {
-        return mainStoryBoard().instantiateViewController(withIdentifier: "LeftSidePanelVC") as? LeftSidePanelVC
-    }
-    
-    class func HomeVC() -> HomeVC? {
-        return mainStoryBoard().instantiateViewController(withIdentifier: "HomeVC") as? HomeVC
-    }
-    
 }
-    
